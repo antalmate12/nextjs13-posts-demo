@@ -1,26 +1,32 @@
 import Link from "next/link";
-import { ReactElement } from "react";
+import { useEffect, useState } from "react";
+import { Post } from "../../models/post";
 
-async function getUserData(post) {
+async function getUserOfPost(userId) {
   const res = await fetch(
-    "https://jsonplaceholder.typicode.com/users/" + post.userId,
-    { next: { revalidate: 10 } }
+    "https://jsonplaceholder.typicode.com/users/" + userId,
+    {
+      next: { revalidate: 10 },
+    }
   );
   return res.json();
 }
 
-const PostItem = async ({ post }): Promise<ReactElement<any, any>> => {
-  // useMemo
-  const userData = await getUserData(post);
+const PostItem = async ({ post }: { post: Post }) => {
+  const userData = await getUserOfPost(post.userId);
 
   return (
-    <li key={post.id}>
-      <small>{userData.name}</small>
+    <li>
+      <pre>{JSON.stringify(userData.name, null, 2)}</pre>
 
       <h2>{post.title}</h2>
       <p>{post.body}</p>
 
-      <Link href={`post/${post.id}`}>
+      <Link
+        href={{
+          pathname: "/post/" + post.id,
+        }}
+      >
         <button>GO</button>
       </Link>
     </li>

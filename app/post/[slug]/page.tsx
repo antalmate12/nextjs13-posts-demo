@@ -15,10 +15,12 @@ async function getCommentsOfPost(slug) {
 }
 
 const PostPage = async ({ params }) => {
-  const [post, comments] = await Promise.all([
-    getPost(params.slug),
-    getCommentsOfPost(params.slug),
-  ]);
+  // Initiate both requests in parallel
+  const postData = getPost(params.slug);
+  const commentsData = getCommentsOfPost(params.slug);
+
+  // Wait for the promises to resolve
+  const [post, comments] = await Promise.all([postData, commentsData]);
 
   return (
     <div>

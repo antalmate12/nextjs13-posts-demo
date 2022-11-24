@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { Suspense } from "react";
+import { ReactElement, Suspense } from "react";
 import PostItem from "../../components/PostItem/PostItem";
 
 async function getData() {
   const res = await fetch("https://jsonplaceholder.typicode.com/posts", {
-    cache: "no-store",
+    next: { revalidate: 30 },
   });
   // The return value is *not* serialized
   // You can return Date, Map, Set, etc.
@@ -34,61 +34,6 @@ const HomePage = async () => {
         //     <button>GO</button>
         //   </Link>
         // </li>
-      ))}
-
-      {data.map((post) => (
-        <li key={post.id}>
-          <h2>{post.title}</h2>
-          <p>{post.body}</p>
-
-          <Link href={`post/${post.id}`}>
-            <button>GO</button>
-          </Link>
-        </li>
-      ))}
-
-      {data.map((post) => (
-        <li key={post.id}>
-          <h2>{post.title}</h2>
-          <p>{post.body}</p>
-
-          <Link href={`post/${post.id}`}>
-            <button>GO</button>
-          </Link>
-        </li>
-      ))}
-
-      {data.map((post) => (
-        <li key={post.id}>
-          <h2>{post.title}</h2>
-          <p>{post.body}</p>
-
-          <Link href={`post/${post.id}`}>
-            <button>GO</button>
-          </Link>
-        </li>
-      ))}
-
-      {data.map((post) => (
-        <li key={post.id}>
-          <h2>{post.title}</h2>
-          <p>{post.body}</p>
-
-          <Link href={`post/${post.id}`}>
-            <button>GO</button>
-          </Link>
-        </li>
-      ))}
-
-      {data.map((post) => (
-        <li key={post.id}>
-          <h2>{post.title}</h2>
-          <p>{post.body}</p>
-
-          <Link href={`post/${post.id}`}>
-            <button>GO</button>
-          </Link>
-        </li>
       ))}
     </ul>
   );
