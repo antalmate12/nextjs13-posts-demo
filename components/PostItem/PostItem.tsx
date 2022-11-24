@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { Post } from "../../models/post";
+import { Button } from "@nextui-org/react";
 
 async function getUserOfPost(userId) {
   const res = await fetch(
@@ -27,7 +27,7 @@ const PostItem = async ({ post }: { post: Post }) => {
           pathname: "/post/" + post.id,
         }}
       >
-        <button>GO</button>
+        <Button>GO</Button>
       </Link>
     </li>
   );
