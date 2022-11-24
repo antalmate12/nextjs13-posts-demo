@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Suspense } from "react";
+import PostItem from "../../components/PostItem/PostItem";
 
 async function getData() {
   const res = await fetch("https://jsonplaceholder.typicode.com/posts", {
@@ -23,6 +24,62 @@ const HomePage = async () => {
   const data = await getData();
   return (
     <ul>
+      {data.map((post) => (
+        <PostItem key={post.id} post={post} />
+        // <li key={post.id}>
+        //   <h2>{post.title}</h2>
+        //   <p>{post.body}</p>
+
+        //   <Link href={`post/${post.id}`}>
+        //     <button>GO</button>
+        //   </Link>
+        // </li>
+      ))}
+
+      {data.map((post) => (
+        <li key={post.id}>
+          <h2>{post.title}</h2>
+          <p>{post.body}</p>
+
+          <Link href={`post/${post.id}`}>
+            <button>GO</button>
+          </Link>
+        </li>
+      ))}
+
+      {data.map((post) => (
+        <li key={post.id}>
+          <h2>{post.title}</h2>
+          <p>{post.body}</p>
+
+          <Link href={`post/${post.id}`}>
+            <button>GO</button>
+          </Link>
+        </li>
+      ))}
+
+      {data.map((post) => (
+        <li key={post.id}>
+          <h2>{post.title}</h2>
+          <p>{post.body}</p>
+
+          <Link href={`post/${post.id}`}>
+            <button>GO</button>
+          </Link>
+        </li>
+      ))}
+
+      {data.map((post) => (
+        <li key={post.id}>
+          <h2>{post.title}</h2>
+          <p>{post.body}</p>
+
+          <Link href={`post/${post.id}`}>
+            <button>GO</button>
+          </Link>
+        </li>
+      ))}
+
       {data.map((post) => (
         <li key={post.id}>
           <h2>{post.title}</h2>

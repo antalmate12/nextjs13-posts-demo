@@ -1,9 +1,7 @@
 async function getPost(slug) {
   const res = await fetch(
     "https://jsonplaceholder.typicode.com/posts/" + slug,
-    {
-      cache: "no-store",
-    }
+    { next: { revalidate: 10 } }
   );
   return res.json();
 }
@@ -11,9 +9,7 @@ async function getPost(slug) {
 async function getCommentsOfPost(slug) {
   const res = await fetch(
     "https://jsonplaceholder.typicode.com/comments?postId=" + slug,
-    {
-      cache: "no-store",
-    }
+    { next: { revalidate: 10 } }
   );
   return res.json();
 }
